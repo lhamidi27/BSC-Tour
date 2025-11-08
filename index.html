@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hamidi Webmap</title>
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <div id="intro-page">
+    <h1 id="intro-title">Welcome to the Berkeley Student Cooperative!</h1>
+    <p id="intro-description">
+      The BSC is a nonprofit housing cooperative in Berkeley, California that provides low-cost housing
+      to undergraduate and graduate students at colleges and universities across the Bay Area.
+      The cooperative is comprised of 17 houses and 3 apartment buildings which house over 1200 students. Each co-op offers unique history and traditions which are reflected in its proud members. Click the button below to start your virtual tour!
+    </p>
+    <p id="sources">
+      <strong>Designed by Laila Hamidi in 2025</strong>
+      <br>
+      <strong>Data Source: 
+      <a href="https://bsc.coop/housing/our-houses-apartments" target="_blank">
+        Berkeley Student Cooperative
+      </a>
+      (and my own experiences as a co-oper)</strong>
+    </p>
+    <button id="start-map-button">BEGIN YOUR TOUR</button>
+  </div>
+
+  <div id="map"></div>
+
+  <h2 id="map-title">A Virtual Tour of the Berkeley Student Cooperative</h2>
+  <h3 id="map-subtitle">Click any house to start your tour!</h3>
+
+  <div id="map-buttons"></div>
+
+  <div id="sidebar">
+    <div id="close-sidebar">✕</div>
+    <h4 id="sidebar-title"></h4>
+    <div id="sidebar-desc"></div>
+  </div>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+  <script src="./script.js"></script>
+
+</body>
+</html>
