@@ -8,14 +8,14 @@ const map = new mapboxgl.Map({
   zoom: 14.5
 });
 
-// Intro page toggle
+// Hide intro page
 document.getElementById('start-map-button').addEventListener('click', () => {
   document.getElementById('intro-page').style.display = 'none';
   document.getElementById('map').style.display = 'block';
   map.resize();
 });
 
-// Sidebar setup
+// Create sidebar
 const sidebar = document.getElementById('sidebar');
 const desc = document.getElementById('sidebar-desc');
 const closeSidebar = document.getElementById('close-sidebar');
@@ -27,10 +27,9 @@ function openSidebar(html) {
 
 closeSidebar.addEventListener('click', () => sidebar.classList.remove('open'));
 
-// Track first click for subtitle removal
 let firstClick = true;
 
-// Load GeoJSON and map layers
+// Load geojson
 map.on('load', function () {
   const geojsonURL = 'https://raw.githubusercontent.com/lhamidi27/BSC-Tour/refs/heads/main/data/BSC_Tour.geojson';
 
@@ -39,6 +38,7 @@ map.on('load', function () {
     data: geojsonURL
   });
 
+// Create co-ops layer
   map.addLayer({
     id: 'coops',
     type: 'circle',
@@ -72,7 +72,8 @@ map.on('load', function () {
     .then(res => res.json())
     .then(data => { coopData = data; });
 
-  // Function to display sidebar info
+  // Sidebar content html
+
   function showSidebar(feature) {
     const p = feature.properties;
 
@@ -107,7 +108,7 @@ map.on('load', function () {
 
     openSidebar(sidebarHTML);
 
-    // Handle sidebar internal links
+    // Fetch sidebar links and zoom to new coop
     const links = document.querySelectorAll('.sidebar-link');
     links.forEach(link => {
       link.addEventListener('click', (e) => {
@@ -125,13 +126,12 @@ map.on('load', function () {
     });
   }
 
-  // Marker click event — outside of showSidebar!
   map.on('click', 'coops', (e) => {
     const feature = e.features[0];
     showSidebar(feature);
     map.flyTo({ center: feature.geometry.coordinates, zoom: 18 });
 
-    // Hide subtitle on first click
+    //Hide subtitle on first click
     if (firstClick) {
       const subtitle = document.getElementById('map-subtitle'); // ✅ make sure ID matches HTML
       if (subtitle) {
